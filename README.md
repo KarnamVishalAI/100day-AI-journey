@@ -2,9 +2,6 @@
 
 This repository documents my journey of learning AI/ML through structured daily practice over 100 days. The goal is to develop foundational and practical skills required to build AI systems and eventually become job-ready.
 
-## Challenge Dates
-Start Date: DD Month YYYY  
-End Date: DD Month YYYY  
 
 ## Daily Structure
 Each day includes:
@@ -29,10 +26,6 @@ Each day includes:
 8. LangChain
 9. AI Agents
 
-## Repository Structure
-- DayXX folders: notes + notebooks
-- Projects folder: practical builds
-- Resources: useful references
 
 ## Why I am doing this
 To build discipline, learn in public, gain practical AI skills, and create a track record of consistent execution.
