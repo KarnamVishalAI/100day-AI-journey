@@ -1,0 +1,75 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+class FinanceAnalyzer:
+
+    def __init__(self, file_path):
+        self.df = pd.read_csv(file_path)
+        self.df["date"] = pd.to_datetime(self.df["date"])
+
+    def total_spending(self):
+        total = self.df["amount"].sum()
+        print("Total Spending:", total)
+
+    def spending_by_category(self):
+        category_sum = self.df.groupby("category")["amount"].sum()
+        print("\nSpending by Category:\n", category_sum)
+        return category_sum
+
+    def daily_spending(self):
+        daily = self.df.groupby("date")["amount"].sum()
+        print("\nDaily Spending:\n", daily)
+        return daily
+
+    def highest_expense(self):
+        max_row = self.df.loc[self.df["amount"].idxmax()]
+        print("\nHighest Expense:")
+        print(max_row)
+
+    def plot_category_spending(self):
+
+        category_sum = self.df.groupby("category")["amount"].sum()
+
+        plt.bar(category_sum.index, category_sum.values)
+        plt.title("Spending by Category")
+        plt.xlabel("Category")
+        plt.ylabel("Amount")
+        plt.show()
+
+    def plot_daily_spending(self):
+
+        daily = self.df.groupby("date")["amount"].sum()
+
+        plt.plot(daily.index, daily.values, marker='o')
+        plt.title("Daily Spending Trend")
+        plt.xlabel("Date")
+        plt.ylabel("Amount")
+        plt.xticks(rotation=45)
+        plt.show()
+
+    def spending_distribution(self):
+
+        plt.hist(self.df["amount"], bins=5)
+        plt.title("Spending Distribution")
+        plt.xlabel("Amount")
+        plt.ylabel("Frequency")
+        plt.show()
+
+
+def main():
+
+    analyzer = FinanceAnalyzer("finance_data.csv")
+
+    analyzer.total_spending()
+    analyzer.spending_by_category()
+    analyzer.daily_spending()
+    analyzer.highest_expense()
+
+    analyzer.plot_category_spending()
+    analyzer.plot_daily_spending()
+    analyzer.spending_distribution()
+
+
+if __name__ == "__main__":
+    main()
